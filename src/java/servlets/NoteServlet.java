@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package notes;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,7 +56,8 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
+                .forward(request, response);
     }
 
     /**
