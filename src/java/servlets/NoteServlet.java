@@ -100,7 +100,7 @@ public class NoteServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Controls the title and body of the note";
     }// </editor-fold>
 
 }
