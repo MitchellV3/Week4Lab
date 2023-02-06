@@ -29,9 +29,6 @@ public class NoteServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,9 +47,6 @@ public class NoteServlet extends HttpServlet {
         String notePath = getServletContext().getRealPath("/WEB-INF/note.txt");
         
         Note note = new Note(notePath);
-        String title = note.getTitle();
-        String body = note.getBody();
-        
         request.setAttribute("note", note);
         
         String edit = request.getParameter("edit");
@@ -87,8 +81,16 @@ public class NoteServlet extends HttpServlet {
         String title = request.getParameter("title");
         String body = request.getParameter("body");
         
-        Note note = new Note(title, body, notePath);
-
+        Note note = new Note(title, body);
+        request.setAttribute("note", note);
+        
+        try ( 
+                PrintWriter file = new PrintWriter(new BufferedWriter(new FileWriter(notePath, false)))) {
+            file.println(title);
+            file.println(body);
+        }
+        getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
+                .forward(request, response);
     }
 
     /**

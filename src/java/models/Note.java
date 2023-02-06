@@ -2,11 +2,8 @@
 package models;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 
 /**
@@ -31,9 +28,9 @@ public class Note implements Serializable {
         }
     }
     
-    public Note(String title, String body, String notePath) throws IOException {
-        PrintWriter file = new PrintWriter(new BufferedWriter(new FileWriter(notePath, false)));
-        file.close();
+    public Note(String title, String body) {
+         this.title = title;
+         this.body = body;
     } 
     
     public String getTitle() {
