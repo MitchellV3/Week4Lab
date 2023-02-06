@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlets;
 
 import java.io.IOException;
@@ -31,16 +27,7 @@ public class NoteServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NoteServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NoteServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
         }
     }
 
@@ -57,10 +44,14 @@ public class NoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String edit = request.getParameter("edit");
+        String view = request.getParameter("view");
         
         if (edit != (null)) {
           getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp")
                 .forward(request, response);
+        } else if (view != (null)){
+          getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
+                .forward(request, response);         
         } else {
           getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
                 .forward(request, response);
