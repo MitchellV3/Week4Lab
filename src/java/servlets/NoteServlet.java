@@ -1,8 +1,8 @@
 
 package servlets;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -53,8 +53,7 @@ public class NoteServlet extends HttpServlet {
         String title = note.getTitle();
         String body = note.getBody();
         
-        request.setAttribute("title", title);
-        request.setAttribute("body", body);
+        request.setAttribute("note", note);
         
         String edit = request.getParameter("edit");
         String view = request.getParameter("view");
@@ -82,6 +81,13 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String notePath = getServletContext().getRealPath("/WEB-INF/note.txt");
+        
+        String title = request.getParameter("title");
+        String body = request.getParameter("body");
+        
+        Note note = new Note(title, body, notePath);
 
     }
 
