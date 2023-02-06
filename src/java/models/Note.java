@@ -1,6 +1,9 @@
 
 package models;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -13,9 +16,15 @@ public class Note implements Serializable {
     
     private String body;
     
-    public Note() {
+    public Note(){
         title = "";
         body = "";
+    }
+    
+    public Note(String notePath) throws IOException {
+        BufferedReader file = new BufferedReader(new FileReader(notePath));
+        title = file.readLine();      
+        body = file.readLine();
     }
     
     public Note(String title, String body) {

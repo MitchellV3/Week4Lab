@@ -14,7 +14,7 @@
     <body>
         <h1>Simple Note Keeper</h1>
         <h2>Edit Note</h2>
-        <form method="post" action="arithmetic">
+        <form method="post" action="note">
           <h3>Title: </h3>
           <input type="text" name="title" value="${note.title}"><br>
           <h3>Contents: </h3>
@@ -22,7 +22,6 @@
           <br>
           <input type="submit" value="Save">
         </form>
-
         <br>
         <a href="note?view=clicked">View</a>
     </body>
